@@ -40,18 +40,7 @@ app.use("/", (req, res) => {
   res.send("Hello World");
 });
 
-app.use("/twitter", async (req, res) => {
-  const { retweet } = require("./controllers/twitter");
-  retweet(req, res)
-    .then(() => {
-      console.log("Retweeting...");
-    })
-    .catch((err) => {
-      console.log(err);
-      isStarted = false;
-    });
-  res.send("Retweeting...");
-});
+app.use("/twitter", require("./routes/twitter"));
 
 app.listen(PORT, () => {
   console.log("Server is running on port " + PORT);

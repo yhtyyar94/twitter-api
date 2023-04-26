@@ -84,7 +84,7 @@ const retweet = async (req, res) => {
         });
       console.log(retweet);
     }
-
+    res.send("retweeting");
     //how can i obtain logged user id and then retweet the tweet with that id
   });
 };

@@ -22,7 +22,25 @@ app.use(function (req, res, next) {
 
 let isStarted = false;
 
-if (!isStarted) {
+// if (!isStarted) {
+//   const { retweet } = require("./controllers/twitter");
+//   retweet()
+//     .then(() => {
+//       console.log("Retweeting...");
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       isStarted = false;
+//     });
+//   isStarted = true;
+// }
+
+//Routes
+app.use("/", (req, res) => {
+  res.send("Hello World");
+});
+
+app.use("/twitter", async (req, res) => {
   const { retweet } = require("./controllers/twitter");
   retweet()
     .then(() => {
@@ -32,24 +50,7 @@ if (!isStarted) {
       console.log(err);
       isStarted = false;
     });
-  isStarted = true;
-}
-
-//Routes
-app.use("/", (req, res) => {
-  if (!isStarted) {
-    const { retweet } = require("./controllers/twitter");
-    retweet()
-      .then(() => {
-        console.log("Retweeting...");
-      })
-      .catch((err) => {
-        console.log(err);
-        isStarted = false;
-      });
-    isStarted = true;
-  }
-  res.send("Hello World");
+  res.send("Retweeting...");
 });
 
 app.listen(PORT, () => {

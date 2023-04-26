@@ -1,9 +1,9 @@
 const { TwitterApi, ETwitterStreamEvent } = require("twitter-api-v2");
 require("dotenv").config();
 
-const client = new TwitterApi(process.env.bearerToken);
+const clientT = new TwitterApi(process.env.bearerToken);
 
-const clientVV = new TwitterApi({
+const client = new TwitterApi({
   appKey: process.env.appKey,
   appSecret: process.env.appSecret,
   accessSecret: process.env.accessSecret,
@@ -72,17 +72,17 @@ const retweet = async (req, res) => {
     } else {
       console.log("retweeting");
 
-      //   const retweet = await client.v2
-      //     .retweet(tweet.data.id, {
-      //       "tweet.fields": ["entities", "text"],
-      //     })
-      //     .then((res) => {
-      //       console.log(res);
-      //     })
-      //     .catch((err) => {
-      //       console.log(err);
-      //     });
-      //   console.log(retweet);
+      const retweet = await client.v2
+        .retweet(tweet.data.id, {
+          "tweet.fields": ["entities", "text"],
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      console.log(retweet);
     }
 
     //how can i obtain logged user id and then retweet the tweet with that id

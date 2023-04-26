@@ -38,9 +38,7 @@ let isStarted = false;
 const retweet = require("./routes/twitter");
 
 //Routes
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+app.get("/", retweet);
 
 app.get("/twitter", retweet);
 

@@ -42,7 +42,7 @@ app.use("/", (req, res) => {
 
 app.use("/twitter", async (req, res) => {
   const { retweet } = require("./controllers/twitter");
-  retweet()
+  retweet(req, res)
     .then(() => {
       console.log("Retweeting...");
     })

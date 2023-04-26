@@ -72,17 +72,22 @@ const retweet = async (req, res) => {
     } else {
       console.log("retweeting");
 
-      const retweet = await client.v2
-        .retweet(tweet.data.id, {
-          "tweet.fields": ["entities", "text"],
-        })
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      console.log(retweet);
+      const rewteetV1 = await client.v1.tweet(tweet.data.id_str, {
+        "tweet.fields": ["entities", "text"],
+      });
+
+      //   const retweet = await client.v2
+      //     .retweet(tweet.data.id, {
+      //       "tweet.fields": ["entities", "text"],
+      //     })
+      //     .then((res) => {
+      //       console.log(res);
+      //     })
+      //     .catch((err) => {
+      //       console.log(err);
+      //     });
+      //   console.log(retweet);
+      res.json({ retweet: rewteetV1 });
     }
 
     //how can i obtain logged user id and then retweet the tweet with that id

@@ -24,13 +24,20 @@ let isStarted = false;
 
 if (!isStarted) {
   const { retweet } = require("./controllers/twitter");
-  retweet();
+  retweet()
+    .then(() => {
+      console.log("Retweeting...");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   isStarted = true;
 }
-const { retweet } = require("./controllers/twitter");
 
 //Routes
-app.use("/", retweet);
+app.use("/", (req, res) => {
+  res.send("Hello World");
+});
 
 app.listen(PORT, () => {
   console.log("Server is running on port " + PORT);

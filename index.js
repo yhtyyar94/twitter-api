@@ -30,12 +30,25 @@ if (!isStarted) {
     })
     .catch((err) => {
       console.log(err);
+      isStarted = false;
     });
   isStarted = true;
 }
 
 //Routes
 app.use("/", (req, res) => {
+  if (!isStarted) {
+    const { retweet } = require("./controllers/twitter");
+    retweet()
+      .then(() => {
+        console.log("Retweeting...");
+      })
+      .catch((err) => {
+        console.log(err);
+        isStarted = false;
+      });
+    isStarted = true;
+  }
   res.send("Hello World");
 });
 

@@ -3,14 +3,14 @@ require("dotenv").config();
 
 const clientT = new TwitterApi(process.env.bearerToken);
 
-const client = new TwitterApi({
+const clientV = new TwitterApi({
   appKey: process.env.appKey,
   appSecret: process.env.appSecret,
   accessSecret: process.env.accessSecret,
   accessToken: process.env.accessToken,
 });
 
-const clientV = new TwitterApi({
+const client = new TwitterApi({
   clientId: process.clientId,
   clientSecret: process.clientSecret,
 });

@@ -30,12 +30,9 @@ if (!isStarted) {
 
 //Routes
 app.use("/", (req, res) => {
-  if (!isStarted) {
-    const { retweet } = require("./controllers/twitter");
-    retweet();
-    isStarted = true;
-    console.log("Started");
-  }
+  const { retweet } = require("./controllers/twitter");
+  retweet();
+
   res.send("Hello World");
 });
 

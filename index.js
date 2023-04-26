@@ -35,12 +35,14 @@ let isStarted = false;
 //   isStarted = true;
 // }
 
+const retweet = require("./routes/twitter");
+
 //Routes
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-app.use("/twitter", require("./routes/twitter"));
+app.get("/twitter", retweet);
 
 app.listen(PORT, () => {
   console.log("Server is running on port " + PORT);
